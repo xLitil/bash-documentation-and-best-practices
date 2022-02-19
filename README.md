@@ -6,6 +6,12 @@
 ...
 ```
 
+## stdout / stderr
+```shell
+echo "Print to stdout"
+>&2 echo "Print to stderr"
+```
+
 ## `if` ... `then` ... `else`
 
 ```shell
