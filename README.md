@@ -44,6 +44,19 @@ fi
 Numbers
 ```
 
+## Loops
+
+### `while` ... `do` ... `done`
+
+```shell
+while [[ condition ]]; do
+  ...
+done
+```
+
+### `for` ... `do` ... `done`
+
+
 ## Function
 ```shell
 function name() {
@@ -61,3 +74,5 @@ echo "Function returns '${FUNCTION_RESULT}'"
 
 FUNCTION_RESULT=$(name "arg1") || echo "An error occured: '${FUNCTION_RESULT}'"
 ```
+
+## `.basrc` vs `.bash_profile`
