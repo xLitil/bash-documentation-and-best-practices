@@ -51,6 +51,9 @@ Numbers
 ```shell
 while [[ condition ]]; do
   ...
+  continue # exit from current iteration and begin the next iteration.
+  break # exit from the while 
+  ...
 done
 ```
 
