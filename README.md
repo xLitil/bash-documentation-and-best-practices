@@ -79,3 +79,68 @@ FUNCTION_RESULT=$(name "arg1") || echo "An error occured: '${FUNCTION_RESULT}'"
 ```
 
 ## `.basrc` vs `.bash_profile`
+
+## Template
+
+```shell
+#!/usr/bin/env bash
+
+CURRENT_SCRIPT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
+CMD_NAME="$0"
+
+usage() {
+  echo "Usage: $CMD_NAME {start|stop|restart|status}"
+  echo
+  echo "Options:"
+  echo "  start: start application, see $CMD_NAME start -h for further information."
+  echo "  stop: gently stop or not if timeout reached."
+  echo "  restart: stop then start"
+  echo "  status: indicate if application process is running or not."
+}
+
+start() {
+  while true; do
+    case "$1" in
+    -p | --http-port)
+      APP_HTTP_PORT=$2
+      shift 2
+      ;;
+    -s | --https-port)
+      APP_HTTPS_PORT=$2
+      shift 2
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *) break ;;
+    esac
+  done
+  
+  echo "..."
+}
+
+case "$1" in
+start)
+  shift
+  start $@
+  ;;
+stop)
+  shift
+  stop
+  ;;
+restart)
+  shift
+  stop
+  start
+  ;;
+status)
+  status
+  ;;
+-h | --help | *)
+  usage
+  exit 1
+  ;;
+esac
+```
